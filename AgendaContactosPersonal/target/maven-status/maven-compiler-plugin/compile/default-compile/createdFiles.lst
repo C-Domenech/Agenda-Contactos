@@ -1,0 +1,5 @@
+com\cdomenech\ui\ContactosController.class
+module-info.class
+com\cdomenech\ui\App.class
+database\DBManager.class
+models\Contacto.class

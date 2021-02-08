@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #F0F7EF;" stylesheets="@../../../mi_css/mis-estilos.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cdomenech.ui.MainViewController">
+    <children>
+        <AnchorPane prefHeight="111.0" prefWidth="197.0">
+         <children>
+            <ImageView fitHeight="111.0" fitWidth="185.0" layoutX="27.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../images/forest.png" />
+               </image>
+            </ImageView>
+         </children></AnchorPane>
+        <AnchorPane layoutX="-1.0" layoutY="111.0" prefHeight="489.0" prefWidth="200.0" style="-fx-background-color: #00A185; -fx-background-radius: 0 25 0 0;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-1.0" AnchorPane.topAnchor="111.0">
+            <children>
+                <VBox alignment="TOP_CENTER" layoutX="2.0" layoutY="34.0" prefHeight="366.0" prefWidth="197.0" spacing="10.0">
+                    <children>
+                        <Button fx:id="btnNuevoContacto" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#abrirPanelNuevoContacto" prefHeight="60.0" prefWidth="170.0" styleClass="btnNuevoContacto" text="Nuevo contacto" textAlignment="CENTER" textFill="WHITE">
+                            <font>
+                                <Font name="Arial Narrow Bold" size="15.0" />
+                            </font>
+                            <graphic>
+                                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../../images/plus_white.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                            <VBox.margin>
+                                <Insets bottom="20.0" />
+                            </VBox.margin>
+                        </Button>
+                        <Button fx:id="btnHome" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#activarHome" prefHeight="50.0" prefWidth="170.0" styleClass="btnLateral" text="Home" textAlignment="CENTER" textFill="WHITE">
+                            <font>
+                                <Font name="Arial Bold" size="16.0" />
+                            </font>
+                            <graphic>
+                                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../../images/home_white.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Button fx:id="btnContactos" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="72.0" mnemonicParsing="false" onAction="#activarContactos" prefHeight="50.0" prefWidth="170.0" styleClass="btnLateral" text="Contactos" textAlignment="CENTER" textFill="WHITE">
+                            <font>
+                                <Font name="Arial Bold" size="16.0" />
+                            </font>
+                            <graphic>
+                                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../../images/contacts_white.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                    </children>
+                </VBox>
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutX="198.0" layoutY="26.0" prefHeight="600.0" prefWidth="802.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="198.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+            <TableView fx:id="tbContactos" layoutX="29.0" layoutY="120.0" prefHeight="446.0" prefWidth="741.0" AnchorPane.bottomAnchor="34.0" AnchorPane.leftAnchor="29.0" AnchorPane.rightAnchor="32.0" AnchorPane.topAnchor="120.0">
+              <columns>
+                  <TableColumn fx:id="cNombre" text="Nombre" />
+                <TableColumn fx:id="cApellidos" prefWidth="172.0" text="Apellidos" />
+                <TableColumn fx:id="cEmpresa" prefWidth="145.0" text="Empresa" />
+                  <TableColumn fx:id="cTlfn" prefWidth="161.0" text="Teléfono" />
+                  <TableColumn fx:id="cEmail" prefWidth="182.0" text="Email" />
+              </columns>
+            </TableView>
+                <AnchorPane fx:id="pNuevoContacto" layoutX="-12.0" layoutY="72.0" prefHeight="418.0" prefWidth="336.0" style="-fx-background-color: white;">
+                    <children>
+                        <HBox alignment="CENTER" prefHeight="40.0" prefWidth="336.0" spacing="200.0">
+                            <children>
+                                <JFXButton fx:id="btnGuardar" buttonType="RAISED" onAction="#guardarContacto" text="GUARDAR" textFill="#00a185">
+                                    <HBox.margin>
+                                        <Insets left="10.0" />
+                                    </HBox.margin>
+                                    <font>
+                                        <Font name="System Bold" size="12.0" />
+                                    </font>
+                                    <cursor>
+                                        <Cursor fx:constant="HAND" />
+                                    </cursor>
+                                </JFXButton>
+                                <JFXButton fx:id="btnCancelar" contentDisplay="GRAPHIC_ONLY" layoutX="10.0" layoutY="10.0" onAction="#cancelarCerrarPane" text="Cancelar">
+                                    <graphic>
+                                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@../../../images/close-red.png" />
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                    <cursor>
+                                        <Cursor fx:constant="HAND" />
+                                    </cursor>
+                                </JFXButton>
+                            </children>
+                        </HBox>
+                        <VBox layoutX="26.0" layoutY="60.0" prefHeight="342.0" prefWidth="285.0" spacing="35.0">
+                            <children>
+                                <JFXTextField fx:id="tfNombre" focusColor="#00a185" labelFloat="true" promptText="Nombre">
+                                    <font>
+                                        <Font size="13.0" />
+                                    </font>
+                                </JFXTextField>
+                                <JFXTextField fx:id="tfApellidos" focusColor="#00a185" labelFloat="true" layoutX="10.0" layoutY="10.0" promptText="Apellidos">
+                                    <font>
+                                        <Font size="13.0" />
+                                    </font>
+                                </JFXTextField>
+                                <JFXTextField fx:id="tfEmpresa" focusColor="#00a185" labelFloat="true" layoutX="10.0" layoutY="35.0" promptText="Empresa">
+                                    <font>
+                                        <Font size="13.0" />
+                                    </font>
+                                </JFXTextField>
+                                <JFXTextField fx:id="tfTelefono" focusColor="#00a185" labelFloat="true" layoutX="10.0" layoutY="60.0" onKeyPressed="#anadirOtroTelefono" promptText="Teléfono - ENTER para añadir más">
+                                    <font>
+                                        <Font size="13.0" />
+                                    </font>
+                                </JFXTextField>
+                                <JFXTextField fx:id="tfEmail" focusColor="#00a185" labelFloat="true" layoutX="10.0" layoutY="85.0" onKeyPressed="#anadirOtroEmail" promptText="Email - ENTER para añadir más">
+                                    <font>
+                                        <Font size="13.0" />
+                                    </font>
+                                </JFXTextField>
+                                <Label fx:id="lbError" alignment="CENTER" prefHeight="38.0" prefWidth="285.0" textAlignment="CENTER" textFill="RED" />
+                            </children>
+                        </VBox>
+                    </children>
+                </AnchorPane>
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>
