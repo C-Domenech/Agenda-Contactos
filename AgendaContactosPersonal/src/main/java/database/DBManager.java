@@ -67,11 +67,11 @@ public class DBManager {
         em.remove(c);
         em.getTransaction().commit();
     }
-
+//            PRUEBA EMAIL EXISTE EN DB
     public boolean comprobarEmailExiste(ArrayList<String> emails) {
         boolean emailExists = false;
-//        TypedQuery<Contacto> query = em.createQuery("SELECT c FROM Contacto c WHERE c.emails = :emails", Contacto.class);
-//        Contacto c = query.setParameter("emails", emails).getSingleResult();
+        TypedQuery<Contacto> query = em.createQuery("SELECT c FROM Contacto c WHERE c.emails = :emails", Contacto.class);
+        Contacto c = query.setParameter("emails", emails).getSingleResult();
         return emailExists;
     }
 

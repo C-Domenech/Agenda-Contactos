@@ -146,12 +146,13 @@ public class MainViewController implements Initializable {
 
             telefonos.addAll(Arrays.asList(tlfns));
             emails.addAll(Arrays.asList(emls));
-//            boolean existe = DB.comprobarEmailExiste(emails);
-//            if (existe) {
-//                System.out.println("EXISTEE!!");
-//            } else {
-//                System.out.println("NO EXISTEE!");
-//            }
+//            PRUEBA EMAIL EXISTE EN DB
+            boolean existe = DB.comprobarEmailExiste(emails);
+            if (existe) {
+                System.out.println("EXISTEE!!");
+            } else {
+                System.out.println("NO EXISTEE!");
+            }
             Contacto c = new Contacto(nombre, apellidos, empresa, telefonos, emails);
             DB.crearContacto(c);
             btnCancelar.fire();
