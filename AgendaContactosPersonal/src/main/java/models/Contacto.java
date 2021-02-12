@@ -39,14 +39,23 @@ public class Contacto implements Serializable {
     private String nombre;
     private String apellidos;
     private String empresa;
-//    private String telefono;
-//    private String email;
     private ArrayList<String> telefonos;
     private ArrayList<String> emails;
 
+    /**
+     *
+     */
     public Contacto() {
     }
 
+    /**
+     *
+     * @param nombre
+     * @param apellidos
+     * @param empresa
+     * @param telefonos
+     * @param emails
+     */
     public Contacto(String nombre, String apellidos, String empresa, ArrayList<String> telefonos, ArrayList<String> emails) {
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -55,10 +64,18 @@ public class Contacto implements Serializable {
         this.emails = emails;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getId_contacto() {
         return id_contacto;
     }
 
+    /**
+     *
+     * @param id_contacto
+     */
     public void setId_contacto(Integer id_contacto) {
         this.id_contacto = id_contacto;
     }
@@ -67,22 +84,42 @@ public class Contacto implements Serializable {
         return nombre;
     }
 
+    /**
+     *
+     * @param nombre
+     */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getApellidos() {
         return apellidos;
     }
 
+    /**
+     *
+     * @param apellidos
+     */
     public void setApellidos(String apellidos) {
         this.apellidos = apellidos;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getEmpresa() {
         return empresa;
     }
 
+    /**
+     *
+     * @param empresa
+     */
     public void setEmpresa(String empresa) {
         this.empresa = empresa;
     }
@@ -91,18 +128,52 @@ public class Contacto implements Serializable {
         return telefonos;
     }
 
+    /**
+     *
+     * @param telefonos
+     */
     public void setTelefonos(ArrayList<String> telefonos) {
         this.telefonos = telefonos;
     }
 
+    /**
+     *
+     * @return
+     */
     public ArrayList<String> getEmails() {
         return emails;
     }
 
+    /**
+     *
+     * @param emails
+     */
     public void setEmails(ArrayList<String> emails) {
         this.emails = emails;
     }
 
+    /**
+     *
+     * @return
+     */
+    public String getTelefonosFormatted() {
+        String tlfns = this.getTelefonos().toString().replace("[", "").replace("]", "");
+        return tlfns;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public String getEmailsFormatted() {
+        String emls = this.getEmails().toString().replace("[", "").replace("]", "");
+        return emls;
+    }
+
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString() {
         return "Contacto{" + "id_contacto=" + id_contacto + ", nombre=" + nombre + ", apellidos=" + apellidos + ", empresa=" + empresa + '}';

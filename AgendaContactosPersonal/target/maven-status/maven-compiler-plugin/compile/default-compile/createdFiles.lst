@@ -1,4 +1,7 @@
+com\cdomenech\ui\MainViewController$2.class
+com\cdomenech\ui\MainViewController$1.class
 module-info.class
 com\cdomenech\ui\App.class
 database\DBManager.class
+com\cdomenech\ui\MainViewController.class
 models\Contacto.class

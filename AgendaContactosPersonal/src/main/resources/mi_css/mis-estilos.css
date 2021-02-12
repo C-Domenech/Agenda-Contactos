@@ -59,6 +59,9 @@
 .table-view .column-header {
     -fx-background-color: transparent;
 }
+.table-view .column-header .label {
+    -fx-alignment: BASELINE_LEFT;
+}
 /*Filas*/
 .table-view .table-cell{
     -fx-border-color: transparent;
@@ -78,16 +81,7 @@
 .table-row-cell {
     -fx-background-color: white;
 }
-/*.table-row-cell:odd{
-    -fx-background-color: #93f9b911;
-    -fx-background-insets: 0, 0 0 1 0;
-    -fx-padding: 0.0em;
-}
-.table-row-cell:even{
-    -fx-background-color: #1dbbdd11;
-    -fx-background-insets: 0, 0 0 1 0;
-    -fx-padding: 0.0em;
-}*/
+
 /*Scrollbars*/
 .table-view .virtual-flow .scroll-bar:vertical,
 .table-view .virtual-flow .scroll-bar:vertical .track,
@@ -111,3 +105,11 @@
     -fx-background-color:  linear-gradient(to right, #1dbbdd44, #93f9b944);
 }
 
+/*SnackBar*/
+.jfx-snackbar-toast {
+    -fx-text-fill: #00A185; 
+    -fx-font-size: 15; 
+}
+.jfx-snackbar-action {
+    -fx-text-fill: #00A185; 
+}

@@ -18,13 +18,15 @@
 package database;
 
 import java.util.ArrayList;
+import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.chart.PieChart;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
-import javax.persistence.criteria.Predicate;
 import models.Contacto;
 
 /**
@@ -36,21 +38,41 @@ public class DBManager {
     private EntityManagerFactory emf = Persistence.createEntityManagerFactory("agenda_contactos.odb");
     private EntityManager em = emf.createEntityManager();
 
+    /**
+     * Persist a new contact
+     *
+     * @param c
+     */
     public void crearContacto(Contacto c) {
         em.getTransaction().begin();
         em.persist(c);
         em.getTransaction().commit();
-        em.refresh(c);
+//        em.refresh(c);
     }
 
+    /**
+     * List all contacts
+     *
+     * @return
+     */
     public ObservableList<Contacto> listarContactos() {
         ObservableList<Contacto> contactos = FXCollections.observableArrayList();
         TypedQuery<Contacto> query = em.createQuery("SELECT c FROM Contacto c", Contacto.class);
         contactos.addAll(query.getResultList());
-        System.out.println(contactos);
+//        System.out.println(contactos);
         return contactos;
     }
 
+    /**
+     * Edit a contact that is in the database
+     *
+     * @param c
+     * @param nombre
+     * @param apellidos
+     * @param empresa
+     * @param telefonos
+     * @param emails
+     */
     public void editarContacto(Contacto c, String nombre, String apellidos, String empresa, ArrayList<String> telefonos, ArrayList<String> emails) {
         em.getTransaction().begin();
         c.setNombre(nombre);
@@ -59,20 +81,72 @@ public class DBManager {
         c.setTelefonos(telefonos);
         c.setEmails(emails);
         em.getTransaction().commit();
-        em.refresh(c);
+//        em.refresh(c);
     }
 
+    /**
+     * Remove a contact from the database
+     *
+     * @param c
+     */
     public void eliminarContacto(Contacto c) {
         em.getTransaction().begin();
         em.remove(c);
         em.getTransaction().commit();
     }
-//            PRUEBA EMAIL EXISTE EN DB
+
+    /**
+     * Check if email exists
+     *
+     * @param emails
+     * @return
+     */
     public boolean comprobarEmailExiste(ArrayList<String> emails) {
         boolean emailExists = false;
-        TypedQuery<Contacto> query = em.createQuery("SELECT c FROM Contacto c WHERE c.emails = :emails", Contacto.class);
-        Contacto c = query.setParameter("emails", emails).getSingleResult();
+        TypedQuery<Contacto> query = em.createQuery("SELECT c FROM Contacto c", Contacto.class);
+        List<Contacto> contactos = query.getResultList();
+        for (String email : emails) {
+            for (Contacto c : contactos) {
+                if (c.getEmails().contains(email)) {
+                    emailExists = true;
+                    break;
+                }
+            }
+        }
         return emailExists;
+    }
+
+    /**
+     * Get the companies of every contact
+     *
+     * @return
+     */
+    public ObservableList<PieChart.Data> datosContactosPorEmpresa() {
+        Query query = em.createQuery("SELECT c.empresa, count(c.empresa) FROM Contacto c GROUP BY c.empresa");
+        List<Object[]> results = query.getResultList();
+
+        List<String> empresas = new ArrayList<>();
+        List<Long> numContactos = new ArrayList<>();
+
+        for (Object[] result : results) {
+            String empresa = (String) result[0];
+            Long num = (Long) result[1];
+
+            empresas.add(empresa);
+            numContactos.add(num);
+        }
+
+        Object[] arrEmpresas = empresas.toArray();
+        Object[] arrNumero = numContactos.toArray();
+
+        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
+        // Add every element that need to be shown in the chart
+        for (int i = 0; i < empresas.size(); i++) {
+            PieChart.Data dato = new PieChart.Data(arrEmpresas[i].toString(), Double.parseDouble(arrNumero[i].toString()));
+            pieChartData.add(dato);
+        }
+
+        return pieChartData;
     }
 
 }

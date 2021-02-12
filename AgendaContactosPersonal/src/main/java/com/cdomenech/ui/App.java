@@ -19,9 +19,9 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("main-view"), 1000, 600);
-        stage.setTitle("Magenda - Agenda personal");
-//        Image image = new Image("images/Magenda.png");
-//        stage.getIcons().add(image);
+        stage.setTitle("Magenda - Agenda de contactos");
+        Image image = new Image("images/magenda.png");
+        stage.getIcons().add(image);
         stage.setMinWidth(1000);
         stage.setMinHeight(600);
         stage.setScene(scene);
